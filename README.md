@@ -29,9 +29,9 @@ Responsabilidades de `pausa_service`:
 
 ## Endoints disponibles
 
-Obtenes minutos totales de pausa
-GET `/api/pausas/viaje/{viajeId}/total-minutos`
-Devuelve un `PausaTotalDTO.java` con la suma de minutos en `Double`.
+* GET `/api/pausas/viaje/{viajeId}/total-minutos`
+  * Obtener minutos totales de pausa.
+  * Devuelve un `PausaTotalDTO.java` con la suma de minutos en `Double`.
 
 ```json
 {
@@ -40,9 +40,10 @@ Devuelve un `PausaTotalDTO.java` con la suma de minutos en `Double`.
 }
 ```
 
-Obtener pausas por viaje
-GET `/api/pausas/viaje/{viajeId}/pausas`
-Devuelve una lista de `PausaResponseDTO.java`.
+* GET `/api/pausas/viaje/{viajeId}/pausas`
+  * Obtener pausas por viaje.
+  * Devuelve una lista de `PausaResponseDTO.java`.
+  
 ```json
 {
   "id": 7,
@@ -52,9 +53,9 @@ Devuelve una lista de `PausaResponseDTO.java`.
 }
 ```
 
-Registrar una pausa
-POST `/api/pausas/{viajeId}`
-Crea una nueva pausa asociada a un viaje.
+* POST `/api/pausas/{viajeId}`
+  * Registrar una pausa.
+  * Crea una nueva pausa asociada a un viaje.
 
 ## Logica de negocio
 
