@@ -2,6 +2,8 @@ package com.arqui_web.pausa_service.model;
 
 import java.time.LocalDate;
 
+import com.arqui_web.pausa_service.dto.PausaResponseDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +28,10 @@ public class Pausa {
 		this.inicio = inicio;
 		this.fin = fin;
 		this.viajeId = viajeId;
+	}
+
+	public PausaResponseDTO toPausaDTO() {
+		return new PausaResponseDTO(this.getId(), this.getInicio(), this.getFin(), this.getViaje());
 	}
 
 	public LocalDate getInicio() {
