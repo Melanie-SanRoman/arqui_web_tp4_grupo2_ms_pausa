@@ -95,9 +95,26 @@ spring.datasource.password=tu_contraseña
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-## Diagrama del microservivio
+## Diagramas del microservicio
+Endpoint y dependencias internas
 
-*Agregar*
+``` mermaid
+flowchart LR
+%% Estilos globales
+%% ----------------------------------------
+classDef service fill:#e8f1ff,stroke:#3a6ea5,stroke-width:2px,color:#0b2545,rx:10,ry:10;
+classDef db fill:#fff4d6,stroke:#b68b00,stroke-width:2px,color:#4e3b00,rx:10,ry:10;
+classDef op fill:#e2ffe9,stroke:#41a35a,stroke-width:2px,color:#1a4e26,rx:10,ry:10;
+    subgraph Pausa_Service ["pausa_service"]
+
+        B1[POST /pausas/iniciar]:::service --> B2[(Pausa)]:::db
+        B3[POST /pausas/finalizar]:::service --> B2
+        B4[GET /pausas/viaje/id]:::service -->|Devuelve lista| B2
+        B5[GET /pausas/viaje/id/total-minutos]:::service -->|Minutos totales| B2
+
+    end
+```
+
 ## Colaboradores
 
 > * Langenheim, Geronimo V.
