@@ -24,6 +24,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/pausas")
@@ -110,5 +111,33 @@ public class PausaController {
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.ok(pausas);
+	}
+
+	@Operation(summary = "Inicia una pausa", description = "Crea una pausa asociado a un viaje")
+	@ApiResponses({ @ApiResponse(responseCode = "200", description = "Pausa iniciada"),
+			@ApiResponse(responseCode = "404", description = "Viaje no encontrado") })
+	@PostMapping("/iniciar/{viajeId}")
+	public ResponseEntity<PausaResponseDTO> iniciarPausa(
+			@Parameter(description = "ID del Viaje a pausar") @PathVariable Long viajeId) {
+		try {
+			PausaResponseDTO dto = service.iniciarPausa(viajeId);
+			return ResponseEntity.ok(dto);
+		} catch (EntityNotFoundException e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@Operation(summary = "Finaliza una pausa", description = "Marca una pausa como finalizada")
+	@ApiResponses({ @ApiResponse(responseCode = "200", description = "Pausa finalizada"),
+			@ApiResponse(responseCode = "404", description = "Pausa no encontrada") })
+	@PutMapping("/{id}/finalizar")
+	public ResponseEntity<PausaResponseDTO> finalizarPausa(
+			@Parameter(description = "ID de la pausa a finalizar") @PathVariable Long id) {
+		try {
+			PausaResponseDTO dto = service.finalizarPausa(id);
+			return ResponseEntity.ok(dto);
+		} catch (EntityNotFoundException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

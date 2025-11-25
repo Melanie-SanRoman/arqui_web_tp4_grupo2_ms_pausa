@@ -16,6 +16,8 @@ import com.arqui_web.pausa_service.dto.PausaTotalDTO;
 import com.arqui_web.pausa_service.model.Pausa;
 import com.arqui_web.pausa_service.repository.PausaRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class PausaService {
 	@Autowired
@@ -102,5 +104,27 @@ public class PausaService {
 		List<PausaResponseDTO> pausas = repository.getPausasByViaje(viajeId).stream().map(Pausa::toPausaDTO)
 				.collect(Collectors.toList());
 		return pausas;
+	}
+
+	public PausaResponseDTO iniciarPausa(Long idViaje) {
+		Pausa pausa = new Pausa();
+		pausa.setInicio(LocalDate.now());
+		pausa.setViaje(idViaje);
+
+		Pausa guardada = repository.save(pausa);
+		log.info("Pausa iniciado con ID {}", guardada.getId());
+
+		return pausa.toPausaDTO();
+	}
+
+	public PausaResponseDTO finalizarPausa(Long idPausa) {
+		Pausa pausa = repository.findById(idPausa).orElseThrow(() -> new EntityNotFoundException("Pausa no existe"));
+
+		pausa.setFin(LocalDate.now());
+
+		Pausa guardada = repository.saveAndFlush(pausa);
+		log.info("Pausa finalizada con ID {}", guardada.getId());
+
+		return pausa.toPausaDTO();
 	}
 }
