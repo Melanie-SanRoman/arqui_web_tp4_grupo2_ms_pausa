@@ -5,10 +5,12 @@ import java.time.LocalDate;
 import com.arqui_web.pausa_service.dto.PausaResponseDTO;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class Pausa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +19,7 @@ public class Pausa {
 	private LocalDate inicio;
 	@Column
 	private LocalDate fin;
+	@Column
 	private Long viajeId;
 
 	public Pausa() {
