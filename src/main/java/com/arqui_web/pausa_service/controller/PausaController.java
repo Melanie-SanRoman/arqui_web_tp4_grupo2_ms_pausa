@@ -102,7 +102,7 @@ public class PausaController {
 	@Operation(summary = "Lista pausas de un viaje", description = "Devuelve todas las pausas asociadas a un viaje")
 	@ApiResponses({ @ApiResponse(responseCode = "204", description = "No se encontraron pausas asociadas"),
 			@ApiResponse(responseCode = "200", description = "Lista devuelta correctamente") })
-	@GetMapping("/viaje/{viajeId}/pausas")
+	@GetMapping("/viaje/{viajeId}")
 	public ResponseEntity<List<PausaResponseDTO>> getPausasByViaje(
 			@Parameter(description = "ID del viaje a obtener sus pausas") @PathVariable Long viajeId) {
 		List<PausaResponseDTO> pausas = service.getPausasByViaje(viajeId);
