@@ -29,6 +29,12 @@ Responsabilidades de `pausa_service`:
 
 ## Endoints disponibles
 
+### Documentacion Swagger / OpenAPI
+- Este microservicio expone su documentación interactiva en:
+> [Swagger UI](http://localhost:8081/swagger-ui/index.html)
+
+---
+
 * GET `/api/pausas/viaje/{viajeId}/total-minutos`
   * Obtener minutos totales de pausa.
   * Devuelve un `PausaTotalDTO.java` con la suma de minutos en `Double`.
@@ -74,8 +80,6 @@ Este valor es consumido por `viaje_Service` para determinar la tarifa a aplicar.
 * Spring Web
 * Spring Data JPA
 * MySQL
-
-Pendientes de agregar: 
 * Swagger
 * Autenticacion JWT
 
@@ -114,6 +118,14 @@ classDef op fill:#e2ffe9,stroke:#41a35a,stroke-width:2px,color:#1a4e26,rx:10,ry:
 
     end
 ```
+Este diagrama muestra cómo pausa_service se encarga de:
+
+* Registrar pausas.
+* Finalizarlas.
+* Calcular minutos totales.
+* Informar al viaje_service.
+
+---
 
 Diagrama C4
 
