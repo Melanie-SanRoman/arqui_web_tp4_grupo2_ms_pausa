@@ -1,6 +1,6 @@
 package com.arqui_web.pausa_service.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.arqui_web.pausa_service.dto.PausaResponseDTO;
 
@@ -16,9 +16,9 @@ public class Pausa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
-	private LocalDate inicio;
+	private LocalDateTime inicio;
 	@Column
-	private LocalDate fin;
+	private LocalDateTime fin;
 	@Column
 	private Long viajeId;
 
@@ -26,7 +26,7 @@ public class Pausa {
 		super();
 	}
 
-	public Pausa(LocalDate inicio, LocalDate fin, Long viajeId) {
+	public Pausa(LocalDateTime inicio, LocalDateTime fin, Long viajeId) {
 		super();
 		this.inicio = inicio;
 		this.fin = fin;
@@ -37,19 +37,19 @@ public class Pausa {
 		return new PausaResponseDTO(this.getId(), this.getInicio(), this.getFin(), this.getViaje());
 	}
 
-	public LocalDate getInicio() {
+	public LocalDateTime getInicio() {
 		return inicio;
 	}
 
-	public void setInicio(LocalDate inicio) {
+	public void setInicio(LocalDateTime inicio) {
 		this.inicio = inicio;
 	}
 
-	public LocalDate getFin() {
+	public LocalDateTime getFin() {
 		return fin;
 	}
 
-	public void setFin(LocalDate fin) {
+	public void setFin(LocalDateTime fin) {
 		this.fin = fin;
 	}
 

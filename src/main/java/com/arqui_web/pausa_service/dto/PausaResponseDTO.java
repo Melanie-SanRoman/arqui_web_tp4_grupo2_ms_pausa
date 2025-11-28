@@ -1,18 +1,18 @@
 package com.arqui_web.pausa_service.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class PausaResponseDTO {
 	private Long id;
-	private LocalDate inicio;
-	private LocalDate fin;
+	private LocalDateTime inicio;
+	private LocalDateTime fin;
 	private Long viajeId;
 
 	public PausaResponseDTO() {
 		super();
 	}
 
-	public PausaResponseDTO(Long id, LocalDate inicio, LocalDate fin, Long viajeId) {
+	public PausaResponseDTO(Long id, LocalDateTime inicio, LocalDateTime fin, Long viajeId) {
 		super();
 		this.id = id;
 		this.inicio = inicio;
@@ -28,7 +28,7 @@ public class PausaResponseDTO {
 		this.viajeId = viajeId;
 	}
 
-	public PausaResponseDTO(Long id, LocalDate inicio, LocalDate fin) {
+	public PausaResponseDTO(Long id, LocalDateTime inicio, LocalDateTime fin) {
 		super();
 		this.id = id;
 		this.inicio = inicio;
@@ -43,19 +43,19 @@ public class PausaResponseDTO {
 		this.id = id;
 	}
 
-	public LocalDate getInicio() {
+	public LocalDateTime getInicio() {
 		return inicio;
 	}
 
-	public void setInicio(LocalDate inicio) {
+	public void setInicio(LocalDateTime inicio) {
 		this.inicio = inicio;
 	}
 
-	public LocalDate getFin() {
+	public LocalDateTime getFin() {
 		return fin;
 	}
 
-	public void setFin(LocalDate fin) {
+	public void setFin(LocalDateTime fin) {
 		this.fin = fin;
 	}
 }

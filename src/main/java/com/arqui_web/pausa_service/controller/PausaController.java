@@ -90,8 +90,8 @@ public class PausaController {
 			@ApiResponse(responseCode = "404", description = "Pausas no encontradas") })
 	@GetMapping("/viaje/{idViaje}/total-minutos")
 	public ResponseEntity<PausaTotalDTO> getMinutosPausaByViaje(
-			@Parameter(description = "ID del viaje a calcular sus pausas") @PathVariable Long viajeId) {
-		PausaTotalDTO dto = service.getMinutosPausaByViaje(viajeId);
+			@Parameter(description = "ID del viaje a calcular sus pausas") @PathVariable Long idViaje) {
+		PausaTotalDTO dto = service.getMinutosPausaByViaje(idViaje);
 
 		if (dto == null) {
 			return ResponseEntity.notFound().build();
@@ -102,7 +102,7 @@ public class PausaController {
 	@Operation(summary = "Lista pausas de un viaje", description = "Devuelve todas las pausas asociadas a un viaje")
 	@ApiResponses({ @ApiResponse(responseCode = "204", description = "No se encontraron pausas asociadas"),
 			@ApiResponse(responseCode = "200", description = "Lista devuelta correctamente") })
-	@GetMapping("/viaje/{viajeId}")
+	@GetMapping("/viaje/{viajeId}/pausas")
 	public ResponseEntity<List<PausaResponseDTO>> getPausasByViaje(
 			@Parameter(description = "ID del viaje a obtener sus pausas") @PathVariable Long viajeId) {
 		List<PausaResponseDTO> pausas = service.getPausasByViaje(viajeId);

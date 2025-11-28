@@ -1,6 +1,6 @@
 package com.arqui_web.pausa_service.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
@@ -85,11 +85,11 @@ public class PausaService {
 		}
 
 		double minutosTotales = pausas.stream().mapToDouble(p -> {
-			LocalDate inicio = p.getInicio();
-			LocalDate fin = p.getFin();
+			LocalDateTime inicio = p.getInicio();
+			LocalDateTime fin = p.getFin();
 
 			if (fin == null) {
-				fin = LocalDate.now();
+				fin = LocalDateTime.now();
 			}
 
 			long segundos = ChronoUnit.SECONDS.between(inicio, fin);
@@ -108,7 +108,7 @@ public class PausaService {
 
 	public PausaResponseDTO iniciarPausa(Long idViaje) {
 		Pausa pausa = new Pausa();
-		pausa.setInicio(LocalDate.now());
+		pausa.setInicio(LocalDateTime.now());
 		pausa.setViaje(idViaje);
 
 		Pausa guardada = repository.save(pausa);
@@ -120,7 +120,7 @@ public class PausaService {
 	public PausaResponseDTO finalizarPausa(Long idPausa) {
 		Pausa pausa = repository.findById(idPausa).orElseThrow(() -> new EntityNotFoundException("Pausa no existe"));
 
-		pausa.setFin(LocalDate.now());
+		pausa.setFin(LocalDateTime.now());
 
 		Pausa guardada = repository.saveAndFlush(pausa);
 		log.info("Pausa finalizada con ID {}", guardada.getId());
